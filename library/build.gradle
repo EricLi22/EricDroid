@@ -34,13 +34,13 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterknife_version}"
 
     //rxjava2
-    compile ("io.reactivex.rxjava2:rxandroid:2.0.1"){
-        exclude group:'io.reactivex.rxjava2',module:'rxjava'
+    compile("io.reactivex.rxjava2:rxandroid:2.0.1") {
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
     }
     compile "io.reactivex.rxjava2:rxjava:${rxjava_version}"
-    compile ("com.trello.rxlifecycle2:rxlifecycle-components:2.1.0"){
-        exclude group:'com.android.support'
-        exclude group:'io.reactivex.rxjava2'
+    compile("com.trello.rxlifecycle2:rxlifecycle-components:2.1.0") {
+        exclude group: 'com.android.support'
+        exclude group: 'io.reactivex.rxjava2'
     }
     //日志框架
     compile 'com.orhanobut:logger:1.13'
@@ -49,16 +49,19 @@ dependencies {
     //方法数量超限制
     compile 'com.android.support:multidex:1.0.1'
     //Retrofit
-    compile ("com.squareup.retrofit2:retrofit:${retrofit_version}"){
-        exclude group:'io.reactivex.rxjava2'
+    compile("com.squareup.retrofit2:retrofit:${retrofit_version}") {
+        exclude group: 'io.reactivex.rxjava2'
     }
     compile "com.squareup.retrofit2:converter-gson:${retrofit_version}"
     compile "com.squareup.retrofit2:retrofit-mock:${retrofit_version}"
-    compile ("com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}"){
-        exclude group:'io.reactivex.rxjava2',module:'rxjava'
+    compile("com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}") {
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
     }
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
-    compile ("io.reactivex.rxjava2:rxandroid:2.0.1"){
-        exclude group:'io.reactivex.rxjava2',module:'rxjava'
+    compile("io.reactivex.rxjava2:rxandroid:2.0.1") {
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
     }
+    //数据库
+    compile group: "com.j256.ormlite", name: "ormlite-core", version: "${ormlite_version}"
+    compile group: "com.j256.ormlite", name: "ormlite-android", version: "${ormlite_version}"
 }

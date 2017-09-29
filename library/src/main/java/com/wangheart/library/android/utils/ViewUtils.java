@@ -1,5 +1,6 @@
 package com.wangheart.library.android.utils;
 
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,11 +23,11 @@ public class ViewUtils {
         view.setEnabled(isEnable);
     }
 
-//    public static void setTextColor(TextView view, @ColorRes int colorId) {
-//        if (view == null)
-//            return;
-//        view.setTextColor(ResUtils.getColor(colorId));
-//    }
+    public static void setTextColor(TextView view, @ColorRes int colorId) {
+        if (view == null)
+            return;
+        view.setTextColor(UIUtils.getColor(colorId));
+    }
 
     public static void setGone(View view, boolean isGone) {
         if (view == null)
@@ -46,7 +47,7 @@ public class ViewUtils {
         view.setText(str == null ? "" : str);
     }
 
-    public static void setImageView(ImageView imageView, @DrawableRes int id){
+    public static void setImageView(ImageView imageView, @DrawableRes int id) {
         if (imageView == null)
             return;
         imageView.setImageResource(id);
@@ -56,12 +57,12 @@ public class ViewUtils {
 //        return View.inflate(UIUtils.getContext(), layoutId, null);
 //    }
 
-    public static boolean isTextNull(EditText editText){
+    public static boolean isTextNull(EditText editText) {
         boolean flag;
         String text = editText.getText().toString().trim();
-        if (TextUtils.isEmpty(text)){
+        if (TextUtils.isEmpty(text)) {
             flag = true;
-        }else {
+        } else {
             flag = false;
         }
         return flag;

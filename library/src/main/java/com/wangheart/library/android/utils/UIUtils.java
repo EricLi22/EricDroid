@@ -1,13 +1,10 @@
 package com.wangheart.library.android.utils;
 
-import android.app.Activity;
-import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-
-import com.wangheart.library.android.app.BaseApplication;
-
-import java.util.List;
+import android.content.Context;
+import android.content.res.Resources;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DimenRes;
+import android.support.annotation.StringRes;
 
 /**
  * Author : eric
@@ -18,28 +15,27 @@ import java.util.List;
  * Modified :
  */
 public class UIUtils {
-    public static BaseApplication getContext() {
-        return BaseApplication.getInstance();
+    public static Context getContext() {
+        return AppUtils.getContext();
     }
 
-    public static void addOrShowFragment(FragmentManager fragmentManager, List<Fragment> fragmentList, Fragment fragment, @IdRes int id, String TAG) {
-        for (Fragment fm : fragmentList) {
-            fragmentManager.beginTransaction().hide(fm).commit();
-        }
-        if (fragmentManager.findFragmentByTag(TAG) == null) {
-            fragmentManager.beginTransaction().add(id, fragment, TAG).commit();
-        } else {
-            fragmentManager.beginTransaction().show(fragment).commit();
-        }
+    public static Resources getResources() {
+        return getContext().getResources();
     }
 
-    private static Activity mHomeActivity;
-
-    public static void setHomeActivity(Activity activity) {
-        mHomeActivity = activity;
+    public static int getColor(@ColorRes int colorId) {
+        return getResources().getColor(colorId);
     }
 
-    public static Activity getHomeActivity() {
-        return mHomeActivity;
+    public static String getString(@StringRes int stringId) {
+        return getResources().getString(stringId);
+    }
+
+    public static String getString(@StringRes int stringId, Object... formatArgs) {
+        return getResources().getString(stringId, formatArgs);
+    }
+
+    public float getDimen(@DimenRes int dimenRes) {
+        return getResources().getDimension(dimenRes);
     }
 }
