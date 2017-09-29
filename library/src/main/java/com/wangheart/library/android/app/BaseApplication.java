@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.wangheart.library.android.utils.AppUtils;
+
 /**
  * Author : eric
  * CreateDate : 2017/9/28  16:58
@@ -23,6 +25,7 @@ public class BaseApplication extends Application {
         mInstance = this;
         //解决64K问题
         MultiDex.install(this);
+        AppUtils.init(this);
     }
 
     public static BaseApplication getInstance() {

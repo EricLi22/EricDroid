@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+    <LinearLayout
+        android:id="@+id/ll_normal"
+        style="@style/LoadMoreLayout">
+
+        <TextView
+            style="@style/TextListLoadMore"
+            android:text="@string/load_more_normal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_loading"
+        style="@style/LoadMoreLayout">
+
+        <TextView
+            style="@style/TextListLoadMore"
+            android:text="@string/load_more_loading" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_load_failed"
+        style="@style/LoadMoreLayout">
+
+        <TextView
+            style="@style/TextListLoadMore"
+            android:text="@string/load_more_failed" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_load_no_more"
+        style="@style/LoadMoreLayout">
+
+        <TextView
+            style="@style/TextListLoadMore"
+            android:text="@string/load_more_no_more" />
+    </LinearLayout>
+</FrameLayout>
