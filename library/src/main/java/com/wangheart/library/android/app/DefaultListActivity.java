@@ -1,6 +1,7 @@
 package com.wangheart.library.android.app;
 
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -21,7 +22,7 @@ import butterknife.BindView;
  * Modified :
  */
 
-public abstract class DefaultListActivity<DATA> extends  BaseListActivity<LoadingLayout , DATA> {
+public abstract class DefaultListActivity<DATA> extends BaseListActivity<LoadingLayout, DATA> {
     @BindView(R2.id.loading_layout)
     LoadingLayout loadingLayout;
 
@@ -31,6 +32,10 @@ public abstract class DefaultListActivity<DATA> extends  BaseListActivity<Loadin
         ViewGroup contentLayout = (ViewGroup) mainLayout.findViewById(R.id.fl_container);
         contentLayout.addView(contentView, 0);
         return super.initContentView(mainLayout);
+    }
+
+    protected void setColorSchemeResources(@ColorRes int... colorResIds) {
+        loadingLayout.setColorSchemeResources(colorResIds);
     }
 
     @Override

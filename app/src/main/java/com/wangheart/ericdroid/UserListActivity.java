@@ -44,6 +44,14 @@ public class UserListActivity extends DefaultListActivity<User> {
         list.add(user);
         list.add(user);
         list.add(user);
+        list.add(user);
+        list.add(user);
+        list.add(user);
+        list.add(user);
+        list.add(user);
+        list.add(user);
+        list.add(user);
+        list.add(user);
         setData(list);
     }
 

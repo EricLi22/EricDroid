@@ -24,8 +24,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static android.nfc.tech.MifareUltralight.PAGE_SIZE;
-
 /**
  * Author : eric
  * CreateDate : 2017/9/29  13:57
@@ -39,26 +37,42 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
     @BindView(R2.id.rv_list)
     protected RecyclerView rvList;
     private BaseListAdapter mAdapter;
+    //list数据
     private List<DATA> mData;
     private LoadMoreListHolder loadMoreHolder;
-    private ListDataSetObserver mListDataSetObserver = new ListDataSetObserver();
+    private ListDataSetObserver mListDataSetObserver;
+    //参数配置
     private ParamBuilder mParamBuilder;
+    //默认分页大小
+    private final int PAGE_SIZE = 15;
+    //分页的大小
+    private int mPageSize = PAGE_SIZE;
+    //list背景
+    private int mRvBg;
+    //分割线
+    private RecyclerView.ItemDecoration mItemDecoration;
+    //是否加载更多
+    private boolean mIsLoadMoreEnable = false;
 
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         mParamBuilder = paramBuilder();
-        if (mParamBuilder.listBg > 0) {
-            rvList.setBackgroundColor(UIUtils.getColor(mParamBuilder.listBg));
-        }
+        //加载配置
+        buildParam(mParamBuilder);
+        mListDataSetObserver = new ListDataSetObserver();
+        if (mRvBg < 0)
+            rvList.setBackgroundColor(mRvBg);
         mData = new ArrayList<>();
         mAdapter = new BaseListAdapter();
         rvList.setLayoutManager(new LinearLayoutManager(getThis()));
         //分隔线
-        rvList.addItemDecoration(mParamBuilder.itemDecoration);
+        rvList.addItemDecoration(mItemDecoration);
+        //加载更多布局
         loadMoreHolder = new LoadMoreListHolder(LayoutInflater.from(UIUtils.getContext()).inflate(R.layout.layout_load_more, rvList, false));
-        loadMoreHolder.setData(isLoadMoreEnable() ? LoadMoreListHolder.STATE_NORMAL : LoadMoreListHolder.STATE_NO_MORE);
+        loadMoreHolder.setData(mIsLoadMoreEnable ? LoadMoreListHolder.STATE_NORMAL : LoadMoreListHolder.STATE_NO_MORE);
+        //观察数据
         mAdapter.registerAdapterDataObserver(mListDataSetObserver);
         mAdapter.setOnItemClickListener(new BaseListHolder.OnItemClickListener() {
             @Override
@@ -73,6 +87,9 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
             }
         });
         rvList.setAdapter(mAdapter);
+        /**
+         * 加载更多配置
+         */
         rvList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -80,7 +97,7 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
                 if (CollectionUtils.isEmpty(mData))
                     return;
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    if (!isLoadMoreEnable())
+                    if (!mIsLoadMoreEnable)
                         return;
                     LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
                     int lastVisiblePosition = manager.findLastVisibleItemPosition();
@@ -122,7 +139,7 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
         @Override
         public int getItemCount() {
             // TODO Auto-generated method stub
-            return CollectionUtils.isEmpty(mData) ? 0 : (isLoadMoreEnable() ? mData.size() + 1 : mData.size());
+            return CollectionUtils.isEmpty(mData) ? 0 : (mIsLoadMoreEnable ? mData.size() + 1 : mData.size());
         }
 
         @Override
@@ -130,7 +147,7 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
             /**
              * 是否有加载更多
              */
-            if (isLoadMoreEnable()) {
+            if (mIsLoadMoreEnable) {
                 if (position >= mData.size())
                     return super.getItemViewType(position) + 1;
             }
@@ -148,12 +165,6 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
                 holder.setOnItemLongClickListener(mOnItemLongClickListener);
                 return holder;
             } else {
-                /**
-                 * ViewType=1则是加载更多。
-                 */
-//                if (loadMoreHolder == null) {
-//                    loadMoreHolder = new LoadMoreListHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_load_more, parent, false));
-//                }
                 if (loadMoreHolder.getRootView().getParent() != null) {
                     ((ViewGroup) loadMoreHolder.getRootView().getParent()).removeView(loadMoreHolder.getRootView());
                 }
@@ -175,9 +186,6 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
 
     protected abstract BaseListHolder<DATA> newViewHolder(ViewGroup parent, int viewType);
 
-    protected boolean isLoadMoreEnable() {
-        return false;
-    }
 
     protected void onItemClick(View view, int position) {
 
@@ -196,7 +204,6 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
         return new ParamBuilder(getThis());
     }
 
-
     /**
      * 刷新数据
      *
@@ -207,7 +214,7 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
         if (!CollectionUtils.isEmpty(data))
             mData.addAll(data);
         mAdapter.notifyDataSetChanged();
-        loadMoreHolder.setData(data.size() < PAGE_SIZE ? LoadMoreListHolder.STATE_NO_MORE : LoadMoreListHolder.STATE_NORMAL);
+        loadMoreHolder.setData(data.size() < mPageSize ? LoadMoreListHolder.STATE_NO_MORE : LoadMoreListHolder.STATE_NORMAL);
     }
 
     public List<DATA> getData() {
@@ -222,7 +229,7 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
     protected void showMore(List<DATA> data) {
         mData.addAll(data);
         mAdapter.notifyDataSetChanged();
-        loadMoreHolder.setData(data.size() < PAGE_SIZE ? LoadMoreListHolder.STATE_NO_MORE : LoadMoreListHolder.STATE_NORMAL);
+        loadMoreHolder.setData(data.size() < mPageSize ? LoadMoreListHolder.STATE_NO_MORE : LoadMoreListHolder.STATE_NORMAL);
     }
 
 
@@ -241,6 +248,7 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
     public final static class ParamBuilder {
         int listBg;
         RecyclerView.ItemDecoration itemDecoration;
+        boolean isLoadMoreEnable = false;
 
         public ParamBuilder(Context context) {
             itemDecoration = new HorizontalDividerItemDecoration.Builder(context)
@@ -249,17 +257,39 @@ public abstract class BaseListActivity<T extends RefreshHandle, DATA> extends Ba
                     .build();
         }
 
-        public ParamBuilder setRecycleViewBg(@ColorRes int bg) {
+        public ParamBuilder bgList(@ColorRes int bg) {
             this.listBg = bg;
             return this;
         }
 
-        public ParamBuilder setItemDecoration(RecyclerView.ItemDecoration itemDecoration) {
+        public ParamBuilder loadMoreEnable(boolean isLoadMoreEnable) {
+            this.isLoadMoreEnable = isLoadMoreEnable;
+            return this;
+        }
+
+        public ParamBuilder itemDecoration(RecyclerView.ItemDecoration itemDecoration) {
             this.itemDecoration = itemDecoration;
             return this;
         }
     }
 
+    /**
+     * 将ParamBuild的参数配置到ListActivity。
+     *
+     * @param paramBuilder
+     */
+    private void buildParam(ParamBuilder paramBuilder) {
+        if (paramBuilder == null) {
+            throw new RuntimeException("ParamBuild is null");
+        }
+        this.mRvBg = paramBuilder.listBg;
+        mItemDecoration = paramBuilder.itemDecoration;
+        mIsLoadMoreEnable = paramBuilder.isLoadMoreEnable;
+    }
+
+    /**
+     * 观察list数据
+     */
     class ListDataSetObserver extends RecyclerView.AdapterDataObserver {
         @Override
         public void onChanged() {
