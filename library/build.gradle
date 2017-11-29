@@ -20,6 +20,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -49,7 +50,7 @@ dependencies {
     compile "com.squareup.picasso:picasso:${picasso_version}"
     //方法数量超限制
     compile 'com.android.support:multidex:1.0.1'
-    //Retrofit
+    //=========Retrofit===============================
     compile("com.squareup.retrofit2:retrofit:${retrofit_version}") {
         exclude group: 'io.reactivex.rxjava2'
     }
@@ -59,9 +60,6 @@ dependencies {
         exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
     }
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
-    compile("io.reactivex.rxjava2:rxandroid:2.0.1") {
-        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
-    }
     //数据库
     compile group: "com.j256.ormlite", name: "ormlite-core", version: "${ormlite_version}"
     compile group: "com.j256.ormlite", name: "ormlite-android", version: "${ormlite_version}"
