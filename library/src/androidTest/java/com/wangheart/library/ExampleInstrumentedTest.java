@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.wangheart.library.android.net.NetManager;
+import com.wangheart.library.android.net.RetrofitManager;
 import com.wangheart.library.android.utils.LogUtils;
 
 import org.junit.Before;
@@ -23,7 +23,7 @@ public class ExampleInstrumentedTest {
     @Before
     public void before(){
         LogUtils.w("===========before==========");
-        new NetManager.Builder()
+        new RetrofitManager.Builder()
                 .setUrl("http://192.166.11.11/")
                 .setDebug(true)
                 .build();

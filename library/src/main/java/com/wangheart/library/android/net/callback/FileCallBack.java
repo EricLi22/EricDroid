@@ -1,7 +1,7 @@
 package com.wangheart.library.android.net.callback;
 
 
-import com.wangheart.library.android.net.OkHttpUtils;
+import com.wangheart.library.android.net.OkHttpManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -64,7 +64,7 @@ public abstract class FileCallBack extends Callback<File>
                 sum += len;
                 fos.write(buf, 0, len);
                 final long finalSum = sum;
-                OkHttpUtils.getInstance().getDelivery().execute(new Runnable()
+                OkHttpManager.getInstance().getDelivery().execute(new Runnable()
                 {
                     @Override
                     public void run()

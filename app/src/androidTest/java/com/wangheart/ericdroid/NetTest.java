@@ -6,7 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.wangheart.ericdroid.entity.User;
 import com.wangheart.ericdroid.net.api.UserApi;
-import com.wangheart.library.android.net.NetManager;
+import com.wangheart.library.android.net.RetrofitManager;
 import com.wangheart.library.android.net.Result;
 import com.wangheart.library.android.net.listener.BaseJsonRequestListener;
 import com.wangheart.library.android.utils.LogUtils;
@@ -27,7 +27,7 @@ public class NetTest {
     @Before
     public void before(){
         LogUtils.w("===========before==========");
-        new NetManager.Builder()
+        new RetrofitManager.Builder()
                 .setUrl("http://192.166.11.248:9000/")
                 .setDebug(true)
                 .build();

@@ -2,7 +2,7 @@ package com.wangheart.library.android.net.request;
 
 import android.text.TextUtils;
 
-import com.wangheart.library.android.net.OkHttpUtils;
+import com.wangheart.library.android.net.OkHttpManager;
 import com.wangheart.library.android.utils.Exceptions;
 
 import java.util.Map;
@@ -51,19 +51,19 @@ public class OtherRequest extends OkHttpRequest
     @Override
     protected Request buildRequest(RequestBody requestBody)
     {
-        if (method.equals(OkHttpUtils.METHOD.PUT))
+        if (method.equals(OkHttpManager.METHOD.PUT))
         {
             builder.put(requestBody);
-        } else if (method.equals(OkHttpUtils.METHOD.DELETE))
+        } else if (method.equals(OkHttpManager.METHOD.DELETE))
         {
             if (requestBody == null)
                 builder.delete();
             else
                 builder.delete(requestBody);
-        } else if (method.equals(OkHttpUtils.METHOD.HEAD))
+        } else if (method.equals(OkHttpManager.METHOD.HEAD))
         {
             builder.head();
-        } else if (method.equals(OkHttpUtils.METHOD.PATCH))
+        } else if (method.equals(OkHttpManager.METHOD.PATCH))
         {
             builder.patch(requestBody);
         }

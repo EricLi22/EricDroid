@@ -1,6 +1,6 @@
 package com.wangheart.ericdroid.net.service;
 
-import com.wangheart.library.android.net.NetManager;
+import com.wangheart.library.android.net.RetrofitManager;
 
 /**
  * Author : eric
@@ -13,6 +13,6 @@ import com.wangheart.library.android.net.NetManager;
 
 public class services {
     public static UserService getUserService() {
-       return NetManager.getService(UserService.class);
+       return RetrofitManager.getService(UserService.class);
     }
 }

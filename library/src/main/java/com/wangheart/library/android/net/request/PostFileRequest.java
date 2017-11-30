@@ -1,7 +1,7 @@
 package com.wangheart.library.android.net.request;
 
 
-import com.wangheart.library.android.net.OkHttpUtils;
+import com.wangheart.library.android.net.OkHttpManager;
 import com.wangheart.library.android.net.callback.Callback;
 import com.wangheart.library.android.utils.Exceptions;
 
@@ -54,7 +54,7 @@ public class PostFileRequest extends OkHttpRequest
             public void onRequestProgress(final long bytesWritten, final long contentLength)
             {
 
-                OkHttpUtils.getInstance().getDelivery().execute(new Runnable()
+                OkHttpManager.getInstance().getDelivery().execute(new Runnable()
                 {
                     @Override
                     public void run()

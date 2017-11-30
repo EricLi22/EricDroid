@@ -1,7 +1,7 @@
 package com.wangheart.library.android.net.request;
 
 
-import com.wangheart.library.android.net.OkHttpUtils;
+import com.wangheart.library.android.net.OkHttpManager;
 import com.wangheart.library.android.net.callback.Callback;
 
 import java.io.IOException;
@@ -57,11 +57,11 @@ public class RequestCall
 
         if (readTimeOut > 0 || writeTimeOut > 0 || connTimeOut > 0)
         {
-            readTimeOut = readTimeOut > 0 ? readTimeOut : OkHttpUtils.DEFAULT_MILLISECONDS;
-            writeTimeOut = writeTimeOut > 0 ? writeTimeOut : OkHttpUtils.DEFAULT_MILLISECONDS;
-            connTimeOut = connTimeOut > 0 ? connTimeOut : OkHttpUtils.DEFAULT_MILLISECONDS;
+            readTimeOut = readTimeOut > 0 ? readTimeOut : OkHttpManager.DEFAULT_MILLISECONDS;
+            writeTimeOut = writeTimeOut > 0 ? writeTimeOut : OkHttpManager.DEFAULT_MILLISECONDS;
+            connTimeOut = connTimeOut > 0 ? connTimeOut : OkHttpManager.DEFAULT_MILLISECONDS;
 
-            clone = OkHttpUtils.getInstance().getOkHttpClient().newBuilder()
+            clone = OkHttpManager.getInstance().getOkHttpClient().newBuilder()
                     .readTimeout(readTimeOut, TimeUnit.MILLISECONDS)
                     .writeTimeout(writeTimeOut, TimeUnit.MILLISECONDS)
                     .connectTimeout(connTimeOut, TimeUnit.MILLISECONDS)
@@ -70,7 +70,7 @@ public class RequestCall
             call = clone.newCall(request);
         } else
         {
-            call = OkHttpUtils.getInstance().getOkHttpClient().newCall(request);
+            call = OkHttpManager.getInstance().getOkHttpClient().newCall(request);
         }
         return call;
     }
@@ -89,7 +89,7 @@ public class RequestCall
             callback.onBefore(request, getOkHttpRequest().getId());
         }
 
-        OkHttpUtils.getInstance().execute(this, callback);
+        OkHttpManager.getInstance().execute(this, callback);
     }
 
     public Call getCall()
