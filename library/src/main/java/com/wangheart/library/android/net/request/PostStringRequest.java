@@ -1,7 +1,7 @@
 package com.wangheart.library.android.net.request;
 
 
-import com.wangheart.library.android.utils.Exceptions;
+import com.wangheart.library.android.utils.ExceptionUtils;
 
 import java.util.Map;
 
@@ -28,7 +28,7 @@ public class PostStringRequest extends OkHttpRequest
 
         if (this.content == null)
         {
-            Exceptions.illegalArgument("the content can not be null !");
+            ExceptionUtils.illegalArgument("the content can not be null !");
         }
         if (this.mediaType == null)
         {

@@ -2,7 +2,7 @@ package com.wangheart.library.android.net.request;
 
 
 import com.wangheart.library.android.net.callback.Callback;
-import com.wangheart.library.android.utils.Exceptions;
+import com.wangheart.library.android.utils.ExceptionUtils;
 
 import java.util.Map;
 
@@ -34,7 +34,7 @@ public abstract class OkHttpRequest
 
         if (url == null)
         {
-            Exceptions.illegalArgument("url can not be null.");
+            ExceptionUtils.illegalArgument("url can not be null.");
         }
 
         initBuilder();

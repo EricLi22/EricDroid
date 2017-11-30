@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wangheart.library.android.holder.BaseListHolder;
-import com.wangheart.library.java.utils.CollectionUtils;
+import com.wangheart.library.android.utils.CollectionUtils;
 
 import java.util.List;
 

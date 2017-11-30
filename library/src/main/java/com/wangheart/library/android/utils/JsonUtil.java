@@ -1,4 +1,4 @@
-package com.wangheart.library.java.utils;
+package com.wangheart.library.android.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

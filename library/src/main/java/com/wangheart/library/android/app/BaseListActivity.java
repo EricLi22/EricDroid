@@ -17,7 +17,7 @@ import com.wangheart.library.android.holder.LoadMoreListHolder;
 import com.wangheart.library.android.utils.UIUtils;
 import com.wangheart.library.android.widget.divider.HorizontalDividerItemDecoration;
 import com.wangheart.library.android.widget.listener.RefreshHandle;
-import com.wangheart.library.java.utils.CollectionUtils;
+import com.wangheart.library.android.utils.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;

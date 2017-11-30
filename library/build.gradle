@@ -20,7 +20,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -31,14 +30,15 @@ dependencies {
     compile "com.android.support:appcompat-v7:${android_support_version}"
     compile "com.android.support:recyclerview-v7:${android_support_version}"
     testCompile 'junit:junit:4.12'
-    //butterknife相关
+    //=========================butterknife=====================
     compile "com.jakewharton:butterknife:${butterknife_version}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterknife_version}"
 
-    //rxjava2
+    //=========================RxAndroid2=====================
     compile("io.reactivex.rxjava2:rxandroid:2.0.1") {
         exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
     }
+    //=========================RxJava2=====================
     compile "io.reactivex.rxjava2:rxjava:${rxjava_version}"
     compile("com.trello.rxlifecycle2:rxlifecycle-components:2.1.0") {
         exclude group: 'com.android.support'
@@ -46,21 +46,23 @@ dependencies {
     }
     //日志框架
     compile 'com.orhanobut:logger:1.13'
-    //图片加载
+    //=========================图片加载=====================
     compile "com.squareup.picasso:picasso:${picasso_version}"
-    //方法数量超限制
+    //=========================方法数量超限制=====================
     compile 'com.android.support:multidex:1.0.1'
-    //=========Retrofit===============================
+    //=========================Retrofit=====================
     compile("com.squareup.retrofit2:retrofit:${retrofit_version}") {
         exclude group: 'io.reactivex.rxjava2'
     }
+    //=========================转化器=====================
     compile "com.squareup.retrofit2:converter-gson:${retrofit_version}"
     compile "com.squareup.retrofit2:retrofit-mock:${retrofit_version}"
     compile("com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}") {
         exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
     }
+    //=========================OkHttp 日志=====================
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
-    //数据库
+    //=========================数据库=====================
     compile group: "com.j256.ormlite", name: "ormlite-core", version: "${ormlite_version}"
     compile group: "com.j256.ormlite", name: "ormlite-android", version: "${ormlite_version}"
 }

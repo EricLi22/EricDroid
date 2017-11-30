@@ -3,7 +3,7 @@ package com.wangheart.library.android.net.request;
 
 import com.wangheart.library.android.net.OkHttpManager;
 import com.wangheart.library.android.net.callback.Callback;
-import com.wangheart.library.android.utils.Exceptions;
+import com.wangheart.library.android.utils.ExceptionUtils;
 
 import java.io.File;
 import java.util.Map;
@@ -30,7 +30,7 @@ public class PostFileRequest extends OkHttpRequest
 
         if (this.file == null)
         {
-            Exceptions.illegalArgument("the file can not be null !");
+            ExceptionUtils.illegalArgument("the file can not be null !");
         }
         if (this.mediaType == null)
         {

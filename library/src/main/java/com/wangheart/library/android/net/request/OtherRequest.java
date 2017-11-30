@@ -3,7 +3,7 @@ package com.wangheart.library.android.net.request;
 import android.text.TextUtils;
 
 import com.wangheart.library.android.net.OkHttpManager;
-import com.wangheart.library.android.utils.Exceptions;
+import com.wangheart.library.android.utils.ExceptionUtils;
 
 import java.util.Map;
 
@@ -37,7 +37,7 @@ public class OtherRequest extends OkHttpRequest
     {
         if (requestBody == null && TextUtils.isEmpty(content) && HttpMethod.requiresRequestBody(method))
         {
-            Exceptions.illegalArgument("requestBody and content can not be null in method:" + method);
+            ExceptionUtils.illegalArgument("requestBody and content can not be null in method:" + method);
         }
 
         if (requestBody == null && !TextUtils.isEmpty(content))

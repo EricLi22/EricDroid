@@ -3,7 +3,7 @@ package com.wangheart.library.android.net;
 
 import android.text.TextUtils;
 
-import com.wangheart.library.java.utils.JsonUtil;
+import com.wangheart.library.android.utils.JsonUtil;
 
 import java.io.IOException;
 

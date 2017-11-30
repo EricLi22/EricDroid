@@ -8,7 +8,7 @@ import com.wangheart.ericdroid.dao.UserDao;
 import com.wangheart.ericdroid.entity.User;
 import com.wangheart.library.android.utils.AppUtils;
 import com.wangheart.library.android.utils.LogUtils;
-import com.wangheart.library.java.utils.CollectionUtils;
+import com.wangheart.library.android.utils.CollectionUtils;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,11 +1,9 @@
-package com.wangheart.library.java.utils;
+package com.wangheart.library.android.utils;
 
 import com.orhanobut.logger.Logger;
-import com.wangheart.library.android.utils.LogUtils;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Author : eric
@@ -16,14 +14,15 @@ import java.util.Set;
  * Modified :
  */
 public class CollectionUtils {
-    public static <T> boolean isEmpty(List<T> list) {
-        return list == null || list.size() <= 0;
-    }
-    public static <T> boolean isEmpty(Set<T> list) {
+    public static <T> boolean isEmpty(Collection<T> list) {
         return list == null || list.size() <= 0;
     }
 
-    public static <T> void print(List<T> list) {
+    public static <T> boolean isEmpty(T[] array) {
+        return array == null || array.length <= 0;
+    }
+
+    public static <T> void print(Collection<T> list) {
         if (CollectionUtils.isEmpty(list))
             LogUtils.d("list is null or empty");
         for (T t : list) {
@@ -31,7 +30,15 @@ public class CollectionUtils {
         }
     }
 
-    public static <K, V> void logMap(Map<K, V> map) {
+    public static <T> void print(T[] array) {
+        if (CollectionUtils.isEmpty(array))
+            LogUtils.d("list is null or empty");
+        for (T t : array) {
+            LogUtils.d(t + "");
+        }
+    }
+
+    public static <K, V> void print(Map<K, V> map) {
         if (map == null || map.isEmpty())
             Logger.w("map is null or empty");
         for (Map.Entry<K, V> entry : map.entrySet()) {
