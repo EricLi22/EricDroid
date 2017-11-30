@@ -1,7 +1,7 @@
 package com.wangheart.ericdroid.net.service;
 
 import com.wangheart.ericdroid.entity.User;
-import com.wangheart.library.android.net.Result;
+import com.wangheart.library.android.net.result.Result;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

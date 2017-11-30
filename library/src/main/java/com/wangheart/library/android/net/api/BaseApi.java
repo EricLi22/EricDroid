@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.wangheart.library.android.app.LifecycleProvider;
-import com.wangheart.library.android.net.BaseResult;
+import com.wangheart.library.android.net.result.BaseResult;
 import com.wangheart.library.android.net.listener.BaseJsonRequestListener;
 import com.wangheart.library.android.utils.LogUtils;
 import com.wangheart.library.android.utils.RxUtils;

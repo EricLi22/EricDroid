@@ -1,4 +1,4 @@
-package com.wangheart.library.android.net;
+package com.wangheart.library.android.net.result;
 
 
 import static com.wangheart.library.android.net.NetManager.getSuccessCode;

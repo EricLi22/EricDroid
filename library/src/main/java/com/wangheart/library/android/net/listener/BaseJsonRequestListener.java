@@ -1,7 +1,7 @@
 package com.wangheart.library.android.net.listener;
 
 
-import com.wangheart.library.android.net.BaseResult;
+import com.wangheart.library.android.net.result.BaseResult;
 import com.wangheart.library.android.net.NetManager;
 import com.wangheart.library.android.utils.LogUtils;
 import com.wangheart.library.android.utils.ToastUtils;

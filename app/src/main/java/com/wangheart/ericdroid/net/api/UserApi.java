@@ -2,7 +2,7 @@ package com.wangheart.ericdroid.net.api;
 
 import com.wangheart.ericdroid.entity.User;
 import com.wangheart.library.android.app.LifecycleProvider;
-import com.wangheart.library.android.net.Result;
+import com.wangheart.library.android.net.result.Result;
 import com.wangheart.library.android.net.api.BaseApi;
 import com.wangheart.library.android.net.listener.BaseJsonRequestListener;
 

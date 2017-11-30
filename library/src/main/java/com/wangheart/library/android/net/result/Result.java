@@ -1,4 +1,4 @@
-package com.wangheart.library.android.net;
+package com.wangheart.library.android.net.result;
 
 /**
  * 描述说明  <br/>
